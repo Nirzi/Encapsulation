@@ -33,3 +33,16 @@ class ImageCompressor:
                     input_path = os.path.join(root, file)
                     output_path = os.path.splitext(input_path)[0] + '.heic'
                     self.compress_image(input_path, output_path)
+                    
+    @property
+    def quality(self) -> int:
+        """Геттер для получения качества сжатия."""
+        return self.__quality
+
+    @quality.setter
+    def quality(self, value: int) -> None:
+        """Сеттер для установки качества сжатия."""
+        if not (0 <= value <= 100):
+            raise ValueError("Качество должно быть в диапазоне 0-100.")
+        self.__quality = value
+        
